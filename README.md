@@ -1,5 +1,9 @@
-# Bob_Ross2
+Bob_Ross2
+============
+
 Another fun pygame based doodler
+
+------------
 
 # Types of Effects
 
