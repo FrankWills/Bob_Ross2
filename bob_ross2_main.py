@@ -7,7 +7,7 @@ class bob_ross2():
     # the color currently selected
     current_color = [255,255,255]
 
-    # a matrix of dots x and y positions
+    # a matrix of dot objects
     dot_matrix = []
 
 
@@ -27,7 +27,7 @@ class bob_ross2():
         pass
 
     def sync_color():
-
+        pass
 
 
     def draw_dots(dot_list):
