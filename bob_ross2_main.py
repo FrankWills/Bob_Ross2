@@ -63,8 +63,9 @@ class bob_ross2():
             dot.set_color(current_color)
 
 
-    def draw_dots(dot_list):
-        pass
+    def draw_dots(dots):
+        for dot in dots:
+            pygame.draw.circle(screen, dot.get_color, dot.get_pos(), dot.get_size(), dot.get_size())
 
     def __main__():
         exit = False # determines when to exit the loop
@@ -73,6 +74,11 @@ class bob_ross2():
         screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
         pygame.display.set_caption("BOB ROSS")
         pygame.init()
+        screen.fill((255, 255, 255))
 
         while exit is not True:
             # checking inputs and applying effects
+
+            # drawing and updating
+            draw_dots(dot_list)
+            pygame.display.update()
