@@ -59,7 +59,8 @@ class bob_ross2():
         pass
 
     def sync_color():
-        pass
+        for dot in dot_list:
+            dot.set_color(current_color)
 
 
     def draw_dots(dot_list):
