@@ -1,6 +1,8 @@
 import pygame
 #TODO: decide if numpy actually improves performance on translations or not
 import numpy
+import random
+from math import *
 
 class bob_ross2():
 
@@ -16,6 +18,11 @@ class bob_ross2():
     center = (int(screen_size[0]/2), int(screen_size[1]/2))
     angle_mod = 1 # set to a fraction of pi for symmetry
 
+    # variables used for wave translations
+    x_mod = 2 # the amount translated in the x before waving
+    y_mod = 2 # the amount translated in the y before waving
+    x_amp = 1 # the amplitude of the waving in the x direction
+    y_amp = 1 # the amplitude of the waving in the y direction
 
     ## Translational Effects
     def circle_trans():
@@ -30,10 +37,20 @@ class bob_ross2():
             dot.set_pos(new_x, new_y)
 
     def wave_trans():
-        pass
+        for dot in dot_list:
+            dot_pos = dot.get_pos()
+            new_x = dot_pos[0] + x_mod + (sin(x) * x_amp)
+            new_y = dot_pos[1] + y_mod + (sin(y) * y_amp)
+
+            dot.set_pos(new_x, new_y)
 
     def random_trans():
-        pass
+        for dot in dot_list:
+            dot_pos = dot.get_pos()
+            new_x = random.random() * screen_size[0]
+            new_y = random.random() * screen_size[1]
+
+            dot.set_pos(new_x, new_y)
 
 
     ## Color Effects
