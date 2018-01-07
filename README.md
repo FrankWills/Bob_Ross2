@@ -19,6 +19,11 @@ a given interval around a specified center.
 A format that draws each dot in position and then translates a distance in a
 direction in a sine wave pattern.
 
+- x_mod: the base distance traveled in the x direction
+- y_mod: the base distance traveled in the y direction
+- x_amp: the amplitude of the wave in the x direction
+- y_amp: the amplitude of the wave in the y direction
+
 ### Random
 
 Draws each dot in position and then randomizes its location within the window.
