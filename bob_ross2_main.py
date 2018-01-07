@@ -39,8 +39,8 @@ class bob_ross2():
     def wave_trans():
         for dot in dot_list:
             dot_pos = dot.get_pos()
-            new_x = dot_pos[0] + x_mod + (sin(x) * x_amp)
-            new_y = dot_pos[1] + y_mod + (sin(y) * y_amp)
+            new_x = dot_pos[0] + x_mod + (sin(y) * y_amp)
+            new_y = dot_pos[1] + y_mod + (sin(x) * x_amp)
 
             dot.set_pos(new_x, new_y)
 
