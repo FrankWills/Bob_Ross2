@@ -14,7 +14,7 @@ class dot ():
 
     # get methods
     def get_pos():
-        return x_pos, y_pos
+        return (x_pos, y_pos)
 
     def get_color():
         return color

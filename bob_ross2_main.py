@@ -34,4 +34,4 @@ class bob_ross2():
         pass
 
     def __main__():
-        pass
+        
