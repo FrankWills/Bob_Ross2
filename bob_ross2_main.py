@@ -10,6 +10,7 @@ class bob_ross2():
 
     # the color currently selected
     current_color = [255,255,255]
+    current_size = 5
 
     # list of dot objects to be drawn
     dot_list = []
