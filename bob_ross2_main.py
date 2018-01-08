@@ -1,11 +1,11 @@
 import pygame
-#TODO: decide if numpy actually improves performance on translations or not
 import random
 import dot
 from math import *
+import ctypes
 
-
-screen_size = (1920, 1080) #TODO: make this draw from windows metrics
+ctypes.windll.user32.SetProcessDPIAware()
+screen_size = (ctypes.windll.user32.GetSystemMetrics(0),ctypes.windll.user32.GetSystemMetrics(1))
 
 # the color currently selected
 current_color = [0,0,0]
@@ -20,27 +20,30 @@ angle_mod = 1 # set to a fraction of pi for symmetry
 
 # variables used for wave translations
 x_mod = 2 # the amount translated in the x before waving
-y_mod = 2 # the amount translated in the y before waving
-x_amp = 1 # the amplitude of the waving in the x direction
-y_amp = 1 # the amplitude of the waving in the y direction
+y_mod = 0 # the amount translated in the y before waving
+x_amp = 100 # the amplitude of the waving in the x direction
+y_amp = 0 # the amplitude of the waving in the y direction
 
 ## Translational Effects
 def circle_trans():
     for dot in dot_list:
         dot_pos = dot.get_pos()
-        new_x = ((dot_pos[0] - center[0]) * cos(angle_mod))
-        -((dot_pos[1] - center[1]) * sin(angle_mod)) + center[0]
+        new_x = ((dot_pos[0] - center[0]) * cos(angle_mod)) -((dot_pos[1] - center[1]) * sin(angle_mod)) + center[0]
 
-        new_y = ((dot_pos[1] - center[1]) * cos(angle_mod))
-        + ((dot_pos[0] - center[0]) * sin(angle_mod)) + center[1]
+        new_y = ((dot_pos[1] - center[1]) * cos(angle_mod)) + ((dot_pos[0] - center[0]) * sin(angle_mod)) + center[1]
 
         dot.set_pos(new_x, new_y)
 
 def wave_trans():
     for dot in dot_list:
         dot_pos = dot.get_pos()
-        new_x = dot_pos[0] + x_mod + (sin(y) * y_amp)
-        new_y = dot_pos[1] + y_mod + (sin(x) * x_amp)
+        new_x = dot_pos[0] + x_mod + (sin(dot_pos[1]) * y_amp)
+        new_y = dot_pos[1] + y_mod + (sin(dot_pos[0]) * x_amp)
+
+        if new_x > screen_size[0]:
+            new_x -= screen_size[0]
+        if new_y > screen_size[1]:
+            new_y -= screen_size[1]
 
         dot.set_pos(new_x, new_y)
 
@@ -64,7 +67,8 @@ def sync_color():
 
 def draw_dots(screen, dots):
     for dot in dots:
-        pygame.draw.circle(screen, dot.get_color(), dot.get_pos(), dot.get_size(), dot.get_size())
+        dot_pos = dot.get_pos()
+        pygame.draw.circle(screen, dot.get_color(), (int (dot_pos[0]), int (dot_pos[1])), dot.get_size(), dot.get_size())
 
 def main():
     exit = False # determines when to exit the loop
@@ -169,8 +173,8 @@ def main():
         draw_dots(screen, dot_list)
         pygame.display.update()
 
-
-    pygame.draw.circle(screen, current_color, (10,10), current_size, current_size)
+    print(mouse_pos[0], mouse_pos[1])
+    pygame.draw.circle(screen, current_color, (1000,1000), current_size, current_size)
     pygame.display.quit()
     pygame.quit()
 
