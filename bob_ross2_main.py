@@ -1,6 +1,5 @@
 import pygame
 #TODO: decide if numpy actually improves performance on translations or not
-import numpy
 import random
 from math import *
 
@@ -134,3 +133,5 @@ class bob_ross2():
 
         pygame.display.quit()
         pygame.quit()
+
+bob_ross2.__main__()
