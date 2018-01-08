@@ -8,7 +8,7 @@ from math import *
 screen_size = (1920, 1080) #TODO: make this draw from windows metrics
 
 # the color currently selected
-current_color = [255,255,255]
+current_color = [0,0,0]
 current_size = 5
 
 # list of dot objects to be drawn
@@ -62,9 +62,10 @@ def sync_color():
         dot.set_color(current_color)
 
 
-def draw_dots(dots):
+def draw_dots(screen, dots):
     for dot in dots:
-        pygame.draw.circle(screen, dot.get_color, dot.get_pos(), dot.get_size(), dot.get_size())
+        pygame.draw.circle(screen, dot.get_color(), dot.get_pos(), dot.get_size(), dot.get_size())
+    pygame.draw.circle(screen, current_color, (10,10), current_size, current_size)
 
 def main():
     exit = False # determines when to exit the loop
@@ -74,6 +75,11 @@ def main():
     pygame.display.set_caption("BOB ROSS")
     pygame.init()
     screen.fill((255, 255, 255))
+
+    # global variable initialization
+    global current_color
+    global current_size
+    global dot_list
 
     while exit is not True:
         # checking inputs and applying effects
@@ -85,7 +91,7 @@ def main():
         keys = pygame.key.get_pressed()
 
         if mouse[0]:
-            dot_list.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
+            dot_list.append(dot.dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
 
         if mouse[2]:
             if len(circles) > 0:
@@ -128,7 +134,7 @@ def main():
             exit = True
 
         # drawing and updating
-        draw_dots(dot_list)
+        draw_dots(screen, dot_list)
         pygame.display.update()
 
     pygame.display.quit()
