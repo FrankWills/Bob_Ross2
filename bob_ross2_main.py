@@ -78,7 +78,59 @@ class bob_ross2():
 
         while exit is not True:
             # checking inputs and applying effects
+            for event in pygame.event.get():
+                pass
+
+            mouse = pygame.mouse.get_pressed()
+            mouse_pos = pygame.mouse.get_pos()
+            keys = pygame.key.get_pressed()
+
+            if mouse[0]:
+                circles.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
+
+            if mouse[2]:
+                if len(circles) > 0:
+                    dot_list.pop()
+
+            if keys[pygame.K_1]:
+                current_color = [255, 0, 0]
+
+            if keys[pygame.K_2]:
+                current_color = [255, 255, 0]
+
+            if keys[pygame.K_3]:
+                current_color = [0, 255, 0]
+
+            if keys[pygame.K_4]:
+                current_color = [0, 255, 255]
+
+            if keys[pygame.K_5]:
+                current_color = [0, 0, 255]
+
+            if keys[pygame.K_6]:
+                current_color = [0, 0, 0]
+
+            if keys[pygame.K_7]:
+                current_color = [255, 255, 255]
+
+            # size modification
+            if keys[pygame.K_LEFTBRACKET] and size > 1:
+                current_size -= 1
+            if keys[pygame.K_RIGHTBRACKET]:
+                current_size += 1
+
+            if keys[pygame.K_r]:
+                rainbow()
+
+            if keys[pygame.K_t]:
+                screen.fill((255, 255, 255))
+
+            if keys[pygame.K_ESCAPE]:
+                exit = True
 
             # drawing and updating
             draw_dots(dot_list)
             pygame.display.update()
+
+        pygame.display.quit()
+        pygame.quit()
