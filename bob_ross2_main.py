@@ -3,135 +3,134 @@ import pygame
 import random
 from math import *
 
-class bob_ross2():
 
-    screen_size = (1920, 1080) #TODO: make this draw from windows metrics
+screen_size = (1920, 1080) #TODO: make this draw from windows metrics
 
-    # the color currently selected
-    current_color = [255,255,255]
-    current_size = 5
+# the color currently selected
+current_color = [255,255,255]
+current_size = 5
 
-    # list of dot objects to be drawn
-    dot_list = []
+# list of dot objects to be drawn
+dot_list = []
 
-    # variables used for circle translations
-    center = (int(screen_size[0]/2), int(screen_size[1]/2))
-    angle_mod = 1 # set to a fraction of pi for symmetry
+# variables used for circle translations
+center = (int(screen_size[0]/2), int(screen_size[1]/2))
+angle_mod = 1 # set to a fraction of pi for symmetry
 
-    # variables used for wave translations
-    x_mod = 2 # the amount translated in the x before waving
-    y_mod = 2 # the amount translated in the y before waving
-    x_amp = 1 # the amplitude of the waving in the x direction
-    y_amp = 1 # the amplitude of the waving in the y direction
+# variables used for wave translations
+x_mod = 2 # the amount translated in the x before waving
+y_mod = 2 # the amount translated in the y before waving
+x_amp = 1 # the amplitude of the waving in the x direction
+y_amp = 1 # the amplitude of the waving in the y direction
 
-    ## Translational Effects
-    def circle_trans():
-        for dot in dot_list:
-            dot_pos = dot.get_pos()
-            new_x = ((dot_pos[0] - center[0]) * cos(angle_mod))
-            -((dot_pos[1] - center[1]) * sin(angle_mod)) + center[0]
+## Translational Effects
+def circle_trans():
+    for dot in dot_list:
+        dot_pos = dot.get_pos()
+        new_x = ((dot_pos[0] - center[0]) * cos(angle_mod))
+        -((dot_pos[1] - center[1]) * sin(angle_mod)) + center[0]
 
-            new_y = ((dot_pos[1] - center[1]) * cos(angle_mod))
-            + ((dot_pos[0] - center[0]) * sin(angle_mod)) + center[1]
+        new_y = ((dot_pos[1] - center[1]) * cos(angle_mod))
+        + ((dot_pos[0] - center[0]) * sin(angle_mod)) + center[1]
 
-            dot.set_pos(new_x, new_y)
+        dot.set_pos(new_x, new_y)
 
-    def wave_trans():
-        for dot in dot_list:
-            dot_pos = dot.get_pos()
-            new_x = dot_pos[0] + x_mod + (sin(y) * y_amp)
-            new_y = dot_pos[1] + y_mod + (sin(x) * x_amp)
+def wave_trans():
+    for dot in dot_list:
+        dot_pos = dot.get_pos()
+        new_x = dot_pos[0] + x_mod + (sin(y) * y_amp)
+        new_y = dot_pos[1] + y_mod + (sin(x) * x_amp)
 
-            dot.set_pos(new_x, new_y)
+        dot.set_pos(new_x, new_y)
 
-    def random_trans():
-        for dot in dot_list:
-            dot_pos = dot.get_pos()
-            new_x = random.random() * screen_size[0]
-            new_y = random.random() * screen_size[1]
+def random_trans():
+    for dot in dot_list:
+        dot_pos = dot.get_pos()
+        new_x = random.random() * screen_size[0]
+        new_y = random.random() * screen_size[1]
 
-            dot.set_pos(new_x, new_y)
-
-
-    ## Color Effects
-    def rainbow():
-        pass
-
-    def sync_color():
-        for dot in dot_list:
-            dot.set_color(current_color)
+        dot.set_pos(new_x, new_y)
 
 
-    def draw_dots(dots):
-        for dot in dots:
-            pygame.draw.circle(screen, dot.get_color, dot.get_pos(), dot.get_size(), dot.get_size())
+## Color Effects
+def rainbow():
+    pass
 
-    def __main__():
-        exit = False # determines when to exit the loop
+def sync_color():
+    for dot in dot_list:
+        dot.set_color(current_color)
 
-        # pygame initialization
-        screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
-        pygame.display.set_caption("BOB ROSS")
-        pygame.init()
-        screen.fill((255, 255, 255))
 
-        while exit is not True:
-            # checking inputs and applying effects
-            for event in pygame.event.get():
-                pass
+def draw_dots(dots):
+    for dot in dots:
+        pygame.draw.circle(screen, dot.get_color, dot.get_pos(), dot.get_size(), dot.get_size())
 
-            mouse = pygame.mouse.get_pressed()
-            mouse_pos = pygame.mouse.get_pos()
-            keys = pygame.key.get_pressed()
+def main():
+    exit = False # determines when to exit the loop
 
-            if mouse[0]:
-                circles.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
+    # pygame initialization
+    screen = pygame.display.set_mode(screen_size, pygame.FULLSCREEN)
+    pygame.display.set_caption("BOB ROSS")
+    pygame.init()
+    screen.fill((255, 255, 255))
 
-            if mouse[2]:
-                if len(circles) > 0:
-                    dot_list.pop()
+    while exit is not True:
+        # checking inputs and applying effects
+        for event in pygame.event.get():
+            pass
 
-            if keys[pygame.K_1]:
-                current_color = [255, 0, 0]
+        mouse = pygame.mouse.get_pressed()
+        mouse_pos = pygame.mouse.get_pos()
+        keys = pygame.key.get_pressed()
 
-            if keys[pygame.K_2]:
-                current_color = [255, 255, 0]
+        if mouse[0]:
+            circles.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
 
-            if keys[pygame.K_3]:
-                current_color = [0, 255, 0]
+        if mouse[2]:
+            if len(circles) > 0:
+                dot_list.pop()
 
-            if keys[pygame.K_4]:
-                current_color = [0, 255, 255]
+        if keys[pygame.K_1]:
+            current_color = [255, 0, 0]
 
-            if keys[pygame.K_5]:
-                current_color = [0, 0, 255]
+        if keys[pygame.K_2]:
+            current_color = [255, 255, 0]
 
-            if keys[pygame.K_6]:
-                current_color = [0, 0, 0]
+        if keys[pygame.K_3]:
+            current_color = [0, 255, 0]
 
-            if keys[pygame.K_7]:
-                current_color = [255, 255, 255]
+        if keys[pygame.K_4]:
+            current_color = [0, 255, 255]
 
-            # size modification
-            if keys[pygame.K_LEFTBRACKET] and size > 1:
-                current_size -= 1
-            if keys[pygame.K_RIGHTBRACKET]:
-                current_size += 1
+        if keys[pygame.K_5]:
+            current_color = [0, 0, 255]
 
-            if keys[pygame.K_r]:
-                rainbow()
+        if keys[pygame.K_6]:
+            current_color = [0, 0, 0]
 
-            if keys[pygame.K_t]:
-                screen.fill((255, 255, 255))
+        if keys[pygame.K_7]:
+            current_color = [255, 255, 255]
 
-            if keys[pygame.K_ESCAPE]:
-                exit = True
+        # size modification
+        if keys[pygame.K_LEFTBRACKET] and size > 1:
+            current_size -= 1
+        if keys[pygame.K_RIGHTBRACKET]:
+            current_size += 1
 
-            # drawing and updating
-            draw_dots(dot_list)
-            pygame.display.update()
+        if keys[pygame.K_r]:
+            rainbow()
 
-        pygame.display.quit()
-        pygame.quit()
+        if keys[pygame.K_t]:
+            screen.fill((255, 255, 255))
 
-bob_ross2.__main__()
+        if keys[pygame.K_ESCAPE]:
+            exit = True
+
+        # drawing and updating
+        draw_dots(dot_list)
+        pygame.display.update()
+
+    pygame.display.quit()
+    pygame.quit()
+
+main()
