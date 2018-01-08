@@ -7,6 +7,8 @@ Another fun pygame based doodler
 
 # Controls
 
+ESC: quit
+
 ## Colors
 
 1: Red
