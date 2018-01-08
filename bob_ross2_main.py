@@ -1,6 +1,7 @@
 import pygame
 #TODO: decide if numpy actually improves performance on translations or not
 import random
+import dot
 from math import *
 
 
@@ -84,7 +85,7 @@ def main():
         keys = pygame.key.get_pressed()
 
         if mouse[0]:
-            circles.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
+            dot_list.append(dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
 
         if mouse[2]:
             if len(circles) > 0:

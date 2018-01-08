@@ -3,11 +3,6 @@
 
 class dot ():
 
-    self.x_pos = 0
-    self.y_pos = 0
-    self.color = [0,0,0]
-    self.size = 0
-
     def __init__(self, new_x_pos, new_y_pos, new_color, new_size):
         self.x_pos = new_x_pos
         self.y_pos = new_y_pos
