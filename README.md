@@ -5,6 +5,15 @@ Another fun pygame based doodler
 
 ------------
 
+# Dependencies
+
+You need pygame to run this. I'm really tired right now so can you just figure
+out how to install that yourself thanks
+
+oh and you need to be on windows for the screen size to work. I could write
+platform-smart code, but I'm not going to. Just manually set the screen size
+and get rid of ctypes if you are on linux.
+
 # Controls
 
 ESC: quit
