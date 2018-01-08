@@ -65,7 +65,6 @@ def sync_color():
 def draw_dots(screen, dots):
     for dot in dots:
         pygame.draw.circle(screen, dot.get_color(), dot.get_pos(), dot.get_size(), dot.get_size())
-    pygame.draw.circle(screen, current_color, (10,10), current_size, current_size)
 
 def main():
     exit = False # determines when to exit the loop
@@ -81,6 +80,11 @@ def main():
     global current_size
     global dot_list
 
+    # effect variables
+    spinning = False
+    waving = False
+    randing = False
+
     while exit is not True:
         # checking inputs and applying effects
         for event in pygame.event.get():
@@ -94,7 +98,7 @@ def main():
             dot_list.append(dot.dot(mouse_pos[0], mouse_pos[1], current_color, current_size))
 
         if mouse[2]:
-            if len(circles) > 0:
+            if len(dot_list) > 0:
                 dot_list.pop()
 
         if keys[pygame.K_1]:
@@ -118,8 +122,27 @@ def main():
         if keys[pygame.K_7]:
             current_color = [255, 255, 255]
 
+        if keys[pygame.K_o]:
+            spinning = True
+
+        if keys[pygame.K_p]:
+            spinning = False
+
+        if keys[pygame.K_l]:
+            waving = True
+
+        if keys[pygame.K_SEMICOLON]:
+            waving = False
+
+        if keys[pygame.K_PERIOD]:
+            randing = True
+
+        if keys[pygame.K_SLASH]:
+            randing = False
+
+
         # size modification
-        if keys[pygame.K_LEFTBRACKET] and size > 1:
+        if keys[pygame.K_LEFTBRACKET] and current_size > 1:
             current_size -= 1
         if keys[pygame.K_RIGHTBRACKET]:
             current_size += 1
@@ -133,10 +156,21 @@ def main():
         if keys[pygame.K_ESCAPE]:
             exit = True
 
+        if spinning:
+            circle_trans()
+
+        if waving:
+            wave_trans()
+
+        if randing:
+            random_trans()
+
         # drawing and updating
         draw_dots(screen, dot_list)
         pygame.display.update()
 
+
+    pygame.draw.circle(screen, current_color, (10,10), current_size, current_size)
     pygame.display.quit()
     pygame.quit()
 
