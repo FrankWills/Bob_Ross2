@@ -5,6 +5,41 @@ Another fun pygame based doodler
 
 ------------
 
+# Controls
+
+## Colors
+
+1: Red
+
+2: Yellow
+
+3: Green
+
+4: Cyan
+
+5: Blue
+
+6: Black
+
+7: White
+
+
+## Size
+
+[: Smaller
+
+]: Larger
+
+## Effects
+
+O/P: Rotation on/off
+
+L/;: Wave on/off
+
+.//: Random on/off
+
+sorry that looks weird
+
 # Types of Effects
 
 ## Translational Effects
@@ -13,6 +48,9 @@ Another fun pygame based doodler
 
 The standard format from bob ross 1. Draws each dot in position and then rotates
 a given interval around a specified center.
+
+- angle_mod: the angle of rotation in radians per tick.
+Fractions of pi make symmetry
 
 ### Wave
 

@@ -105,6 +105,7 @@ def main():
             if len(dot_list) > 0:
                 dot_list.pop()
 
+        # colors
         if keys[pygame.K_1]:
             current_color = [255, 0, 0]
 
@@ -126,6 +127,7 @@ def main():
         if keys[pygame.K_7]:
             current_color = [255, 255, 255]
 
+        # translations
         if keys[pygame.K_o]:
             spinning = True
 
