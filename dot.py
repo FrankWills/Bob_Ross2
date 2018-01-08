@@ -20,7 +20,7 @@ class dot ():
         return self.size
 
     # set methods
-    def set_coords(self, new_x_pos, new_y_pos):
+    def set_pos(self, new_x_pos, new_y_pos):
         self.x_pos = new_x_pos
         self.y_pos = new_y_pos
 
