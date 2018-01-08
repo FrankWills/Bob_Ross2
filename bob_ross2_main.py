@@ -173,10 +173,10 @@ def main():
 
         # drawing and updating
         draw_dots(screen, dot_list)
+        pygame.draw.circle(screen, current_color, (10,10), current_size, current_size) # size indicator
         pygame.display.update()
 
-    print(mouse_pos[0], mouse_pos[1])
-    pygame.draw.circle(screen, current_color, (1000,1000), current_size, current_size)
+    print(mouse_pos[0], mouse_pos[1]) # for debugging
     pygame.display.quit()
     pygame.quit()
 
